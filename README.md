@@ -1,6 +1,1 @@
-# kotLin
-
-this is kotlin!
-
-
-this fi fuck
+This is kotlin!!!!
