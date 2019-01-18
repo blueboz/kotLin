@@ -30,7 +30,7 @@ PIPELINE是关于input->filter->output的流水线称呼，有关于他的配置
 	-r, --config.reload.automatic
 	-V, --version
 
-#二、Yaml 配置
+# 二、Yaml 配置
 **严重提醒，配置冒号后面必须必须必须有一个空格
 config.reload.interval: 3**
 
@@ -43,7 +43,7 @@ config.reload.interval: 3**
 	    delay: 50
 
 
-##2.序列
+## 2.序列
 	pipeline.batch.size: 125
 	pipeline.batch.delay: 50
 
@@ -92,7 +92,7 @@ config.reload.interval: 3**
 	data			{extract.path}/data			path.data
 
 
-##4.安全配置(keystore)
+## 4.安全配置(keystore)
 在配置logstash时，可能需要指定敏感设置或者配置，可以使用logstash 密钥库来存储   
 引用键的语法和环境变量相同   
 ${KEY}
@@ -118,9 +118,9 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 
 
 
-#5.管道配置
+# 5.管道配置
 
-##5.1管道的基础配置如下
+## 5.1管道的基础配置如下
 
 	# This is a comment. You should use comments to describe
 	# parts of your configuration.
@@ -136,7 +136,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	  ...
 	}
 
-##5.2例子
+## 5.2例子
 	input {
 	  file {
 	    path => "/var/log/messages"
@@ -150,23 +150,23 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-##5.3值类型
-###a)数组
+## 5.3值类型
+### a)数组
 	users => [ {id => 1, name => bob}, {id => 2, name => jane} ]
 
-###b)布尔
+### b)布尔
 	ssl_enable => true
 
-##c)字节
+## c)字节
 	my_bytes => "1113"   # 1113 bytes
 	my_bytes => "10MiB"  # 10485760 bytes
 	my_bytes => "100kib" # 102400 bytes
 	my_bytes => "180 mb" # 180000000 bytes
 
-###d)CodeC
+### d)CodeC
 	codec => "json"
   
-###哈希
+### 哈希
 	match => {
 	  "field1" => "value1"
 	  "field2" => "value2"
