@@ -82,7 +82,7 @@ config.reload.interval: 3**
 
 
 
-##3.目录与映射
+## 3.目录与映射
 
 	home			{extract.path}- Directory created by unpacking the archive
 	bin				{extract.path}/bin
@@ -174,14 +174,14 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-###数字
+### 数字
 	port => 33
 
-###注释
+### 注释
 	# this is a comment
 
 
-##CodeC插件
+### CodeC插件
 关于codec插件的使用
 [https://www.elastic.co/guide/en/logstash/current/codec-plugins.html](https://www.elastic.co/guide/en/logstash/current/codec-plugins.html "https://www.elastic.co/guide/en/logstash/current/codec-plugins.html")   
 
@@ -196,7 +196,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	codec=>metadata
 	一共有一个属性metadata，用于设置是否需要展示元数据
 
-#读取多行
+# 读取多行
 	codec => multiline {
 	      pattern => "pattern, a regexp"		//正则匹配为一行
 	      negate => "true" or "false"			//要求正则不能匹配到，
@@ -241,7 +241,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 对于第三行，将属于第二个消息的，而这个由what 决定到底是属于前还是属于后
 
 
-#事件
+# 事件
 如何在配置文件中接触到Event数据（事件数据）   
 *首先我们得知道什么是事件数据，事件数据是在pipeline之间传递的数据*   
 
@@ -253,7 +253,7 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 > Field references, sprintf format and conditionals, described below, will not work in an input block.
 
 
-#字段的引用
+# 字段的引用
 对于事件中，一共有三类数据可以引用
 
 	{
@@ -287,14 +287,14 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 对于列表，可以使用[tags][0]等下标 的方式进行获取
 
 
-##sprintf 格式化
+## sprintf 格式化
 sprintf format 允许对这些属性进行引用
 如下
 	
 	format => "%{host},\n%{[@metadata][test]} \n,%{@metadata} \n%{[@metadata]}\n%{tags}\n%{[tags][0]}"
 同样的，也可以对@timestamp进行格式化成为一个字符串
 
-##时间类型格式化
+## 时间类型格式化
 使用+FORMAT 进行格式化   
 如   
 
@@ -303,7 +303,7 @@ sprintf format 允许对这些属性进行引用
    
 参见http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
 
-##表达式引用
+## 表达式引用
 判断表达式
 	
 	if EXPRESSION {
@@ -322,7 +322,7 @@ sprintf format 允许对这些属性进行引用
 1. 布尔：and,or,nand,xor
 1. 其他：!
 
-###例子1
+### 例子1
 
 	filter {
 	  if [action] == "login" {
