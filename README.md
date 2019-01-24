@@ -1,5 +1,5 @@
-#一、启动
-##1.命令行
+# 一、启动
+## 1.命令行
 
 -f，指定配置文件的路径
 logstash -f ../conf/logs.conf
@@ -29,12 +29,12 @@ PIPELINE是关于input->filter->output的流水线称呼，有关于他的配置
 	-r, --config.reload.automatic
 	-V, --version
 
-#二、Yaml 配置
+# 二、Yaml 配置
 **严重提醒，配置冒号后面必须必须必须有一个空格
 config.reload.interval: 3**
 
 支持两种配置方式
-##1.yml
+## 1.yml
 
 	pipeline:
 	  batch:
@@ -42,7 +42,7 @@ config.reload.interval: 3**
 	    delay: 50
 
 
-##2.序列
+## 2.序列
 	pipeline.batch.size: 125
 	pipeline.batch.delay: 50
 
@@ -81,7 +81,7 @@ config.reload.interval: 3**
 
 
 
-##3.目录与映射
+## 3.目录与映射
 
 	home			{extract.path}- Directory created by unpacking the archive
 	bin				{extract.path}/bin
@@ -91,7 +91,7 @@ config.reload.interval: 3**
 	data			{extract.path}/data			path.data
 
 
-##4.安全配置(keystore)
+## 4.安全配置(keystore)
 在配置logstash时，可能需要指定敏感设置或者配置，可以使用logstash 密钥库来存储   
 引用键的语法和环境变量相同   
 ${KEY}
@@ -117,9 +117,9 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 
 
 
-#5.管道配置
+# 5.管道配置
 
-##5.1管道的基础配置如下
+## 5.1管道的基础配置如下
 
 	# This is a comment. You should use comments to describe
 	# parts of your configuration.
@@ -135,7 +135,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	  ...
 	}
 
-##5.2例子
+## 5.2例子
 	input {
 	  file {
 	    path => "/var/log/messages"
@@ -149,23 +149,23 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-##5.3值类型
-###a)数组
+## 5.3值类型
+### a)数组
 	users => [ {id => 1, name => bob}, {id => 2, name => jane} ]
 
-###b)布尔
+### b)布尔
 	ssl_enable => true
 
-##c)字节
+## c)字节
 	my_bytes => "1113"   # 1113 bytes
 	my_bytes => "10MiB"  # 10485760 bytes
 	my_bytes => "100kib" # 102400 bytes
 	my_bytes => "180 mb" # 180000000 bytes
 
-###d)CodeC
+### d)CodeC
 	codec => "json"
   
-###哈希
+### 哈希
 	match => {
 	  "field1" => "value1"
 	  "field2" => "value2"
@@ -173,14 +173,14 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-###数字
+### 数字
 	port => 33
 
-###注释
+### 注释
 	# this is a comment
 
 
-##CodeC插件
+## CodeC插件
 关于codec插件的使用
 [https://www.elastic.co/guide/en/logstash/current/codec-plugins.html](https://www.elastic.co/guide/en/logstash/current/codec-plugins.html "https://www.elastic.co/guide/en/logstash/current/codec-plugins.html")   
 
@@ -195,14 +195,14 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	codec=>metadata
 	一共有一个属性metadata，用于设置是否需要展示元数据
 
-###读取多行
+### 读取多行
 	codec => multiline {
 	      pattern => "pattern, a regexp"		//正则匹配为一行
 	      negate => "true" or "false"			//要求正则不能匹配到，
 	      what => "previous" or "next"			//如果匹配，这个消息属于后一个还是前一个事件
 	    }
 
-####例子1
+#### 例子1
 下面这个这么理解，如果不是以时间开头的，那么久属于前一个消息的
 
 	input {
@@ -240,7 +240,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 对于第三行，将属于第二个消息的，而这个由what 决定到底是属于前还是属于后
 
 
-#事件
+# 事件
 如何在配置文件中接触到Event数据（事件数据）   
 *首先我们得知道什么是事件数据，事件数据是在pipeline之间传递的数据*   
 
@@ -287,7 +287,7 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 对于列表，可以使用[tags][0]等下标 的方式进行获取
 
 
-###sprintf 格式化
+### sprintf 格式化
 sprintf format 允许对这些属性进行引用
 如下
 	
@@ -295,7 +295,7 @@ sprintf format 允许对这些属性进行引用
 	\n,%{@metadata} \n%{[@metadata]}\n%{tags}\n%{[tags][0]}"
 同样的，也可以对@timestamp进行格式化成为一个字符串
 
-###时间类型格式化
+### 时间类型格式化
 使用+FORMAT 进行格式化   
 如   
 
