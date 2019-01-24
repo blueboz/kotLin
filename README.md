@@ -1,6 +1,5 @@
-# 一、启动
-
-## 1.命令行
+#一、启动
+##1.命令行
 
 -f，指定配置文件的路径
 logstash -f ../conf/logs.conf
@@ -30,7 +29,7 @@ PIPELINE是关于input->filter->output的流水线称呼，有关于他的配置
 	-r, --config.reload.automatic
 	-V, --version
 
-# 二、Yaml 配置
+#二、Yaml 配置
 **严重提醒，配置冒号后面必须必须必须有一个空格
 config.reload.interval: 3**
 
@@ -43,7 +42,7 @@ config.reload.interval: 3**
 	    delay: 50
 
 
-## 2.序列
+##2.序列
 	pipeline.batch.size: 125
 	pipeline.batch.delay: 50
 
@@ -82,7 +81,7 @@ config.reload.interval: 3**
 
 
 
-## 3.目录与映射
+##3.目录与映射
 
 	home			{extract.path}- Directory created by unpacking the archive
 	bin				{extract.path}/bin
@@ -92,7 +91,7 @@ config.reload.interval: 3**
 	data			{extract.path}/data			path.data
 
 
-## 4.安全配置(keystore)
+##4.安全配置(keystore)
 在配置logstash时，可能需要指定敏感设置或者配置，可以使用logstash 密钥库来存储   
 引用键的语法和环境变量相同   
 ${KEY}
@@ -118,9 +117,9 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 
 
 
-# 5.管道配置
+#5.管道配置
 
-## 5.1管道的基础配置如下
+##5.1管道的基础配置如下
 
 	# This is a comment. You should use comments to describe
 	# parts of your configuration.
@@ -136,7 +135,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	  ...
 	}
 
-## 5.2例子
+##5.2例子
 	input {
 	  file {
 	    path => "/var/log/messages"
@@ -150,23 +149,23 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-## 5.3值类型
-### a)数组
+##5.3值类型
+###a)数组
 	users => [ {id => 1, name => bob}, {id => 2, name => jane} ]
 
-### b)布尔
+###b)布尔
 	ssl_enable => true
 
-## c)字节
+##c)字节
 	my_bytes => "1113"   # 1113 bytes
 	my_bytes => "10MiB"  # 10485760 bytes
 	my_bytes => "100kib" # 102400 bytes
 	my_bytes => "180 mb" # 180000000 bytes
 
-### d)CodeC
+###d)CodeC
 	codec => "json"
   
-### 哈希
+###哈希
 	match => {
 	  "field1" => "value1"
 	  "field2" => "value2"
@@ -174,14 +173,14 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	}
 
 
-### 数字
+###数字
 	port => 33
 
-### 注释
+###注释
 	# this is a comment
 
 
-### CodeC插件
+##CodeC插件
 关于codec插件的使用
 [https://www.elastic.co/guide/en/logstash/current/codec-plugins.html](https://www.elastic.co/guide/en/logstash/current/codec-plugins.html "https://www.elastic.co/guide/en/logstash/current/codec-plugins.html")   
 
@@ -196,14 +195,14 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 	codec=>metadata
 	一共有一个属性metadata，用于设置是否需要展示元数据
 
-# 读取多行
+###读取多行
 	codec => multiline {
 	      pattern => "pattern, a regexp"		//正则匹配为一行
 	      negate => "true" or "false"			//要求正则不能匹配到，
 	      what => "previous" or "next"			//如果匹配，这个消息属于后一个还是前一个事件
 	    }
 
-例子1
+####例子1
 下面这个这么理解，如果不是以时间开头的，那么久属于前一个消息的
 
 	input {
@@ -241,7 +240,7 @@ logstash 用户运行的时候，需要有这个环境变量的定义，否则lo
 对于第三行，将属于第二个消息的，而这个由what 决定到底是属于前还是属于后
 
 
-# 事件
+#事件
 如何在配置文件中接触到Event数据（事件数据）   
 *首先我们得知道什么是事件数据，事件数据是在pipeline之间传递的数据*   
 
@@ -253,7 +252,7 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 > Field references, sprintf format and conditionals, described below, will not work in an input block.
 
 
-# 字段的引用
+##字段的引用
 对于事件中，一共有三类数据可以引用
 
 	{
@@ -279,6 +278,7 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 	   }
 	}
 假设我们的Event如上面，那么
+
 1.field，就是这个json对象的key
 如果我们需要引用这个%{}格式即可
 如%{[ip]}就可以得到ip地址、
@@ -287,14 +287,15 @@ https://www.elastic.co/guide/en/logstash/current/first-event.html
 对于列表，可以使用[tags][0]等下标 的方式进行获取
 
 
-## sprintf 格式化
+###sprintf 格式化
 sprintf format 允许对这些属性进行引用
 如下
 	
-	format => "%{host},\n%{[@metadata][test]} \n,%{@metadata} \n%{[@metadata]}\n%{tags}\n%{[tags][0]}"
+	format => "%{host},\n%{[@metadata][test]} 
+	\n,%{@metadata} \n%{[@metadata]}\n%{tags}\n%{[tags][0]}"
 同样的，也可以对@timestamp进行格式化成为一个字符串
 
-## 时间类型格式化
+###时间类型格式化
 使用+FORMAT 进行格式化   
 如   
 
@@ -303,7 +304,17 @@ sprintf format 允许对这些属性进行引用
    
 参见http://joda-time.sourceforge.net/apidocs/org/joda/time/format/DateTimeFormat.html
 
-## 表达式引用
+#### 例子1
+属性引用格式同样在sprintf 格式中使用，这允许你引用这些属性值，例如文本输出，日志文件名称的使用等
+	output {
+	  statsd {
+	    increment => "apache.%{[response][status]}"
+	  }
+	}
+
+
+
+### 表达式引用
 判断表达式
 	
 	if EXPRESSION {
@@ -322,7 +333,8 @@ sprintf format 允许对这些属性进行引用
 1. 布尔：and,or,nand,xor
 1. 其他：!
 
-### 例子1
+表达式可以是很长并且很复杂的，表达式可以包含表达式，可以使用!取反，并且可以使用（）进行括起来
+#### 例子1
 
 	filter {
 	  if [action] == "login" {
@@ -330,4 +342,116 @@ sprintf format 允许对这些属性进行引用
 	  }
 	}
 
-### 例子2
+#### 例子2
+允许指定多个表达式
+
+	output {
+
+	  if [loglevel] == "ERROR" and [deployment] == "production" {
+	    pagerduty {
+	    ...
+	    }
+	  }
+	}
+
+#### 例子3
+
+in表达式主要使用在判断，字符串是否包含，map存在这个key,或者我们的tags 属性中
+
+	filter {
+	  if [foo] in [foobar] {
+	    mutate { add_tag => "field in field" }
+	  }
+	  if [foo] in "foo" {
+	    mutate { add_tag => "field in string" }
+	  }
+	  if "hello" in [greeting] {
+	    mutate { add_tag => "string in field" }
+	  }
+	  if [foo] in ["hello", "world", "foo"] {
+	    mutate { add_tag => "field in list" }
+	  }
+	  if [missing] in [alsomissing] {
+	    mutate { add_tag => "shouldnotexist" }
+	  }
+	  if !("foo" in ["hello", "world"]) {
+	    mutate { add_tag => "shouldexist" }
+	  }
+	}
+
+
+#### 例子4
+
+使用如下方法，保证经过grok的值是正确的。
+
+	output {
+	  if "_grokparsefailure" not in [tags] {
+	    elasticsearch { ... }
+	  }
+	}
+
+
+如果 if[字段] 返回false，他可能是如下的三种情况之一
+
+ - [foo] event中没有这个字段
+ - [foo] event中有，但值为false
+ - [foo] event中有，但值为null
+
+
+##@metadata属性
+这个属性同样是logstash 的内定属性，特性是内容不会再输出的时候输出，
+使用场景是，条件跳转语句的临时变量，在程序的结束，无需手工去清理这些字段  
+如下的例子，标准输入 并且增加了几个属性，也称字段
+
+	input { stdin { } }
+
+	filter {
+	  mutate { add_field => { "show" => "This data will be in the output" } }
+	  mutate { add_field => { "[@metadata][test]" => "Hello" } }
+	  mutate { add_field => { "[@metadata][no_show]" => "This data will not be in the output" } }
+	}
+	
+	output {
+	  if [@metadata][test] == "Hello" {
+	    stdout { codec => rubydebug }
+	  }
+	}
+
+输出是
+	
+	$ bin/logstash -f ../test.conf
+	Pipeline main started
+
+	消息体				<=这里是标准输入
+
+	{
+	    "@timestamp" => 2016-06-30T02:42:51.496Z,
+	      "@version" => "1",
+	          "host" => "example.com",
+	          "show" => "This data will be in the output",
+	       "message" => "消息体"
+	}
+
+如何让元数据输出
+
+	stdout { codec => rubydebug { metadata => true } }
+
+效果如下
+
+	$ bin/logstash -f ../test.conf
+	Pipeline main started
+	消息体
+	{
+	    "@timestamp" => 2016-06-30T02:46:48.565Z,
+	     "@metadata" => {
+	           "test" => "Hello",
+	        "no_show" => "This data will not be in the output"
+	    },
+	      "@version" => "1",
+	          "host" => "example.com",
+	          "show" => "This data will be in the output",
+	       "message" => "消息体"
+}
+
+
+**只有rubydebug能够允许你输出这个@metadata**
