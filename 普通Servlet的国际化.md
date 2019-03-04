@@ -24,5 +24,6 @@ username=周杰伦
 3.在页面使用
 ```xml
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:setLocale value="zh_CN" />
 <fmt:message key="username"></fmt:message>
 ```
