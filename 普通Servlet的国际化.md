@@ -1,11 +1,12 @@
 
 1.web.xml中新增如如下代码
-
-  <context-param>
-    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext
-    </param-name>
-    <param-value>local.messages</param-value>
-  </context-param>
+```xml
+<context-param>
+  <param-name>javax.servlet.jsp.jstl.fmt.localizationContext
+  </param-name>
+  <param-value>local.messages</param-value>
+</context-param>
+```xml
 
 
 2.local.message代表
@@ -15,11 +16,13 @@
 这些文件就是国际化用到的
 
 国际化文件样式如下
-
-  username=Jay
-  username=周杰伦
+```
+username=Jay
+username=周杰伦
+```
 
 3.在页面使用
-
-  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-  <fmt:message key="username"></fmt:message>
+```xml
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<fmt:message key="username"></fmt:message>
+```
