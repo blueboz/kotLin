@@ -6,7 +6,7 @@
   </param-name>
   <param-value>local.messages</param-value>
 </context-param>
-```xml
+```
 
 
 2.local.message代表
