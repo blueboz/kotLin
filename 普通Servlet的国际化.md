@@ -27,3 +27,15 @@ username=周杰伦
 <fmt:setLocale value="zh_CN" />
 <fmt:message key="username"></fmt:message>
 ```
+
+
+4.其他的方法
+```
+
+<fmt:setLocale value="en_US" />
+
+<!-- 如果是使用bundle，那么久要求在这里使用 -->
+<fmt:bundle basename="local/messages">
+  <fmt:message key="username"></fmt:message>
+</fmt:bundle>
+```
