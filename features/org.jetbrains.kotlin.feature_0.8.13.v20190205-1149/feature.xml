@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jetbrains.kotlin.feature"
+      label="Kotlin"
+      version="0.8.13.v20190205-1149"
+      provider-name="JetBrains">
+
+   <description url="http://kotlinlang.org/">
+      Kotlin language support for Kotlin 1.2.60
+   </description>
+
+   <copyright url="http://www.jetbrains.com/">
+      Copyright 2010-2016 JetBrains s.r.o.
+   </copyright>
+
+   <license url="">
+      Copyright 2010-2016 JetBrains s.r.o.
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+   </license>
+
+   <includes
+         id="org.jetbrains.kotlin.policy"
+         version="0.8.13.v20190205-1149"/>
+
+   <includes
+         id="org.jetbrains.kotlin.weaving.feature"
+         version="0.8.13.v20190205-1149"
+         optional="true"/>
+
+   <plugin
+         id="org.jetbrains.kotlin.bundled-compiler"
+         download-size="37868"
+         install-size="41750"
+         version="0.8.13.v20190205-1149"/>
+
+   <plugin
+         id="org.jetbrains.kotlin.core"
+         download-size="546"
+         install-size="1250"
+         version="0.8.13.v20190205-1149"/>
+
+   <plugin
+         id="org.jetbrains.kotlin.ui"
+         download-size="1312"
+         install-size="2936"
+         version="0.8.13.v20190205-1149"/>
+
+   <plugin
+         id="org.jetbrains.kotlin.aspects"
+         download-size="39"
+         install-size="114"
+         version="0.8.13.v20190205-1149"
+         unpack="false"/>
+
+   <plugin
+         id="org.jetbrains.kotlin.maven"
+         download-size="19"
+         install-size="36"
+         version="0.8.13.v20190205-1149"
+         unpack="false"/>
+
+</feature>

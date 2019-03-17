@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jetbrains.kotlin.weaving.feature"
+      label="kotlin-weaving-feature"
+      version="0.8.13.v20190205-1149"
+      provider-name="JetBrains">
+
+   <includes
+         id="org.eclipse.equinox.weaving.sdk"
+         version="1.2.0.201703272045"
+         optional="true"/>
+
+   <plugin
+         id="org.aspectj.runtime"
+         download-size="135"
+         install-size="251"
+         version="1.8.10.201703272045"
+         unpack="false"/>
+
+   <plugin
+         id="org.aspectj.weaver"
+         download-size="1850"
+         install-size="4038"
+         version="1.8.10.201703272045"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.equinox.weaving.aspectj"
+         download-size="34"
+         install-size="66"
+         version="1.0.400.201703272045"
+         unpack="false"/>
+
+</feature>
